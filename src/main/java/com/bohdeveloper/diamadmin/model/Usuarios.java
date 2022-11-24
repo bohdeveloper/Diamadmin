@@ -58,5 +58,4 @@ public class Usuarios {
 
 	    @ManyToOne(optional = false)
 	    private Roles roles;
-
 }

@@ -36,5 +36,4 @@ public class Roles {
     @ToString.Exclude
     @OneToMany(mappedBy = "roles")
     private List<Usuarios> usuarios = new ArrayList<>();
-
 }

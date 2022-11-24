@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +23,9 @@ public class Clientes {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long idClientes;
+	 
+	 @ManyToOne(optional = false)
+	 private Poblacion poblacion;
 	 
 	 @NotNull(message = "La dirección del cliente es obligatoria")
 	 @Basic(optional = false)
@@ -48,10 +52,7 @@ public class Clientes {
 	 
 	 @Basic(optional = true)
 	 private String email;
-	 
-	 //Estudiarlo
-//	 @EqualsAndHashCode.Exclude
-//	 @ToString.Exclude
-//	 @OneToMany(mappedBy = "loteFinalVentas")
-//	 private List<Ventas> ventas = new ArrayList<>();
+
+	 @ManyToOne(optional = false)
+	 private Ventas ventas;
 }
