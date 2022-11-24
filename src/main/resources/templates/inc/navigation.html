@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+        <li><a th:href="@{/}">Inicio</a></li>
+        <li><a th:href="@{/login}">Login</a></li>
+        <li><a th:href="@{/app}">Aplicación</a></li>
+    </ul>
+     <form th:action="@{/logout}" method="post">
+            <button  class="btn btn-danger ms-3">CERRAR SESIÓN</button>
+     </form>
+</nav>
