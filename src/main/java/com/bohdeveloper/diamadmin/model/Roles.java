@@ -36,4 +36,13 @@ public class Roles {
     @ToString.Exclude
     @OneToMany(mappedBy = "roles")
     private List<Usuarios> usuarios = new ArrayList<>();
+    
+    public Roles(Long idRoles) {
+    	this.idRoles = idRoles;
+    }
+    
+    public Roles(Long idRoles, String nombrerol) {
+    	this.idRoles = idRoles;
+    	this.nombrerol = nombrerol;
+    }
 }

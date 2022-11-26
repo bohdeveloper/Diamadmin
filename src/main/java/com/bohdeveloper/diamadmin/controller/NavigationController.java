@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.bohdeveloper.diamadmin.model.Usuarios;
 
 @Controller
-public class NavegationController {
+public class NavigationController {
 	
     @GetMapping({"/", "/welcome"})
     public String getIndex(HttpServletRequest request) {
