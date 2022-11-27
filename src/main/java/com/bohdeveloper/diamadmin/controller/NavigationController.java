@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.bohdeveloper.diamadmin.model.Usuarios;
-
 @Controller
 public class NavigationController {
 	
@@ -27,11 +25,6 @@ public class NavigationController {
     
     @GetMapping("/app")
     public String getApp(HttpServletRequest request) {
-        Usuarios usuario = new Usuarios();
-//        Iterable<Usuarios> usuarios = daoUsuarios.obtenerTodos();
-
-        request.setAttribute("usuario", usuario);
-//        request.setAttribute("usuarios", usuarios);
         return "app/home";
     }
     

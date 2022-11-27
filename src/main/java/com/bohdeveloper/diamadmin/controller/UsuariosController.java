@@ -1,11 +1,11 @@
 package com.bohdeveloper.diamadmin.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,31 +15,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bohdeveloper.diamadmin.model.Usuarios;
+import com.bohdeveloper.diamadmin.service.UsuariosService;
 
 @Controller
 @RequestMapping(value = "app/usuarios")
 public class UsuariosController {
 	
-    @GetMapping(value = "/{id}")
+	@Autowired
+	private UsuariosService usuariosService;
+	
+//    @GetMapping(value = "/{id}")
 //  public @ResponseBody Resource<Usuarios> get(@RequestParam(name = "id") Long idUsuarios) {
-    public @ResponseBody Usuarios get(@PathVariable Long idUsuarios) {
-    	Usuarios usuarios = new Usuarios();
-//    	usuarios.setIdUsuarios(idUsuarios);
-//    	usuarios = this.usuariosService.find(usuarios);
-    	return usuarios;    	
-    }
+//    public @ResponseBody Usuarios get(@PathVariable Long idUsuarios) {
+//    	Usuarios usuarios = this.usuariosService.getUsuariosById(idUsuarios);
+//    	return usuarios;    	
+//    }
     
-    @GetMapping()
-    public @ResponseBody List<Usuarios> getAll(@ModelAttribute Usuarios filterUsuarios) {
+//    @GetMapping()
+//    public @ResponseBody List<Usuarios> getAll(@ModelAttribute Usuarios filterUsuarios) {
 //    	return ResourceUtils.fromListToResource(this.usuariosService.findAll(filterUsuarios));
-    	return null;
-    }
+//    	return null;
+//    }
     
     @PutMapping(value = "/edit")
     public @ResponseBody Usuarios edit(@RequestBody Usuarios usuarios) {
-//    	Usuarios usuarios = this.usuariosService.update(usuarios);
-//    	return usuarios;    	
-    	return null;
+    	usuarios = this.usuariosService.update(usuarios);
+    	return usuarios;    	
     }
     
     @PostMapping(value = "/add")
@@ -67,28 +68,27 @@ public class UsuariosController {
     
     @PutMapping(value = "/delete")
     public @ResponseBody Usuarios delete(@RequestParam Long id) {
-//    	Usuarios usuarios = new Usuarios();
-//    	usuarios.setIdUsuarios(id);
-//    	this.usuariosService.delete(usuarios);
-//    	return usuarios;    	
-    	return null;
+    	Usuarios usuarios = new Usuarios();
+    	usuarios.setIdUsuarios(id);
+    	this.usuariosService.delete(usuarios);
+    	return usuarios;    
     }
     
     @GetMapping(value = "/maint")
-    public String getMaint(Model model) {
-    	model.addAttribute("usuarios", new Usuarios());
-    	return "usuarios";    	
+    public String getMaint(HttpServletRequest request, Model model) {
+        Iterable<Usuarios> usuarios = this.usuariosService.getAllUsuarios();
+        request.setAttribute("usuarios", usuarios);
+    	return "app/usuarios/usuariosMaint";    	
     }
     
-    @GetMapping(value = "/mantenimiento/{id}")
-    public String getMantenimiento(Model model, @PathVariable(value = "id") Long id) {
+    @GetMapping(value = "/detalle/{id}")
+    public String getMantenimiento(HttpServletRequest request, Model model, @PathVariable(value = "id") Long id) {
     	if(!id.toString().equals("0")) {
     		model.addAttribute("id", id);
     	} else {
     		model.addAttribute("id", null);
     	}
-    	model.addAttribute("usuariosDetalle", new Usuarios());
-    	return "usuariosDetalle";    	
+    	return "app/usuarios/usuariosDetalle";    	
     }
     
 

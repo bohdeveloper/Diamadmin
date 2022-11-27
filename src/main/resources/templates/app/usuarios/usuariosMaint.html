@@ -1,0 +1,32 @@
+<div th:replace="~{inc/head}"></div>
+<div th:replace="~{inc/navigation}"></div>
+	    <section>
+	        <article>
+	            <header>
+	                <h1>USUARIOS</h1>
+	            </header>
+	        </article>
+	        <table class="table table-striped table-hover tblUsuarios">
+			   <thead>
+			      <tr>
+			         <th class="header" scope="col">Nombre de usuario</th>
+			         <th class="header" scope="col">Nombre de contacto</th>
+			         <th class="header" scope="col">Primer apellido</th>
+			         <th class="header" scope="col">Segundo apellido</th>
+			         <th class="header" scope="col">Télefono</th>
+			         <th class="header" scope="col">Email</th>
+			      </tr>
+			   </thead>
+			   <tbody>
+			   		<tr th:each="us:${usuarios}" class="cursor-pointer">
+			   			<th scope="row" th:text="${us.nombreUsuario}">
+			   			<th scope="row" th:text="${us.nombreContacto}">
+			   			<th scope="row" th:text="${us.ape1Contacto}">
+			   			<th scope="row" th:text="${us.ape2Contacto}">
+			   			<th scope="row" th:text="${us.telefono}">
+			   			<th scope="row" th:text="${us.email}">			
+			   		</tr>
+			   </tbody>
+			</table>	
+	    </section>
+<div th:replace="~{inc/footer}"></div>
