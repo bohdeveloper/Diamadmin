@@ -24,8 +24,14 @@ public class UsuariosDaoImpl implements UsuariosDao {
 			+ "t1.PASSWORD PASSWORD, t1.NOMBRECONTACTO NOMBRECONTACTO, t1.APE1CONTACTO APE1CONTACTO, t1.APE2CONTACTO APE2CONTACTO, "
 			+ "t1.TELEFONO TELEFONO, t1.EMAIL EMAIL, t2.ID_ROLES ID_ROLES FROM USUARIOS t1 INNER JOIN ROLES t2 ON t1.ID_ROLES = t2.ID_ROLES";
 	
+	public static final String QUERY_ULTIMOID = "DELETE * FROM USUARIOS WHERE ID_USUARIOS = ?";
+	
 	public static final String QUERY_ADD = "INSERT INTO USUARIOS (ID_USUARIOS, NOMBREUSUARIO, PASSWORD, NOMBRECONTACTO, "
 			+ "APE1CONTACTO, APE2CONTACTO, TELEFONO, EMAIL, ID_ROLES) VALUES (?,?,?,?,?,?,?,?,?))";
+	
+	public static final String QUERY_UPDATE = "UPDATE USUARIOS SET NOMBREUSUARIO=?, PASSWORD=?, NOMBRECONTACTO=?, APE1CONTACTO=?, APE2CONTACTO=?, TELEFONO=?, EMAIL=?, ID_ROLES=? WHERE ID_USUARIOS=?";
+	
+	public static final String QUERY_DELETE = "DELETE * FROM USUARIOS WHERE ID_USUARIOS = ?";
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -53,7 +59,10 @@ public class UsuariosDaoImpl implements UsuariosDao {
 	 */
 	public Usuarios add(Usuarios usuarios) {
 		//Generar id nuevo para la inserción
-		this.jdbcTemplate.update(QUERY_ADD, usuarios.getIdUsuarios(), usuarios.getNombreUsuario(), 
+		//private Long ultimoId = ...
+		this.jdbcTemplate.update(QUERY_ADD, 
+				//ultimoId,
+				usuarios.getNombreUsuario(), 
 				usuarios.getPassword(), usuarios.getNombreContacto(), usuarios.getApe1Contacto(), 
 				usuarios.getApe2Contacto(), usuarios.getTelefono(), usuarios.getEmail(), 
 				usuarios.getRoles().getIdRoles());
@@ -69,8 +78,12 @@ public class UsuariosDaoImpl implements UsuariosDao {
 	 * @return Usuarios
 	 */
 	public Usuarios update(Usuarios usuarios) {
-		// TODO Auto-generated method stub
-		return null;
+		this.jdbcTemplate.update(QUERY_UPDATE, usuarios.getNombreUsuario(), 
+				usuarios.getPassword(), usuarios.getNombreContacto(), usuarios.getApe1Contacto(), 
+				usuarios.getApe2Contacto(), usuarios.getTelefono(), usuarios.getEmail(), 
+				usuarios.getRoles().getIdRoles());
+		
+		return usuarios;
 	}
 
 	/**
@@ -80,8 +93,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 	 * 
 	 */
 	public void delete(Usuarios usuarios) {
-		// TODO Auto-generated method stub
-		
+		this.jdbcTemplate.update(QUERY_DELETE, usuarios.getIdUsuarios());
 	}
 
 	/**
