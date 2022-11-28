@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,33 +22,31 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Produccion {
+public class Productos {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Long idProduccion;
-	 
-	 @Basic(optional = false)
-	 private String loteInicialProd;
-	 
-	 @NotNull(message = "El lote del producto es obligatorio")
-	 @Basic(optional = false)
-	 private String loteFinalProd;
+	 private Long idProductos;
 	 
 	 @NotNull(message = "El nombre del producto es obligatorio")
 	 @Basic(optional = false)
 	 private String nombreProducto;
 	 
-	 @NotNull(message = "La fecha de la manipulación es obligatoria")
-	 @Basic(optional = false)
-	 private Date fechaProduccion;
+	 @Basic(optional = true)
+	 private Date fechaCaducidad;
 	
 	 @NotNull(message = "La cantidad del producto es obligatoria")
 	 @Basic(optional = false)
-	 private BigDecimal kilosLitros;
+	 private BigDecimal controlTemp;
+	 
+	 @Basic(optional = true)
+	 private int devolucion;
+	 
+	 @Basic(optional = true)
+	 private String motivoDevolucion;
 	 
 	 @ManyToOne(optional = false)
-	 private Compras compras;
+	 private Proveedores proveedores;
 	 
-	 @OneToOne(optional = false)
-	 private Ventas ventas;
+	 @ManyToOne(optional = false)
+	 private Lotes lotes;
 }

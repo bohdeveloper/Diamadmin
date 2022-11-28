@@ -78,6 +78,7 @@ public class UsuariosController {
     public String getMaint(HttpServletRequest request, Model model) {
         Iterable<Usuarios> usuarios = this.usuariosService.getAllUsuarios();
         request.setAttribute("usuarios", usuarios);
+        request.setAttribute("rutaLogo", "../../");
     	return "app/usuarios/usuariosMaint";    	
     }
     
@@ -88,6 +89,7 @@ public class UsuariosController {
     	} else {
     		model.addAttribute("id", null);
     	}
+    	request.setAttribute("rutaLogo", "../../");
     	return "app/usuarios/usuariosDetalle";    	
     }
     

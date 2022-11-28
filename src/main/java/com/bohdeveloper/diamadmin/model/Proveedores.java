@@ -39,7 +39,7 @@ public class Proveedores {
 	 
 	 @NotNull(message = "El nombre del proveedor es obligatorio")
 	 @Basic(optional = false)
-	 private String nombreProveedor;
+	 private String nombreEmpresa;
 	 
 	 @NotNull(message = "El nombre del contacto es obligatorio")
 	 @Basic(optional = false)
@@ -62,5 +62,5 @@ public class Proveedores {
 	 @EqualsAndHashCode.Exclude
 	 @ToString.Exclude
 	 @OneToMany(mappedBy = "proveedores")
-	 private List<Compras> compras = new ArrayList<>();
+	 private List<Productos> productos = new ArrayList<>();
 }

@@ -25,18 +25,18 @@ DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `id_clientes` int NOT NULL AUTO_INCREMENT,
-  `cp_cliente` int NOT NULL,
+  `id_clientes` bigint NOT NULL AUTO_INCREMENT,
+  `cp_cliente` bigint NOT NULL,
   `direccion` varchar(45) NOT NULL,
-  `nombrecliente` varchar(45) NOT NULL,
-  `nombrecontacto` varchar(45) NOT NULL,
-  `ape1contacto` varchar(45) NOT NULL,
-  `ape2contacto` varchar(45) DEFAULT NULL,
+  `nombre_empresa` varchar(45) NOT NULL,
+  `nombre_contacto` varchar(45) NOT NULL,
+  `ape1_contacto` varchar(45) NOT NULL,
+  `ape2_contacto` varchar(45) DEFAULT NULL,
   `telefono` int NOT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
   PRIMARY KEY (`id_clientes`),
   KEY `cp_poblacion_idx` (`cp_cliente`),
-  CONSTRAINT `cp_poblacion_cliente` FOREIGN KEY (`cp_cliente`) REFERENCES `poblacion` (`cp`)
+  CONSTRAINT `cp_poblacion_clientes` FOREIGN KEY (`cp_cliente`) REFERENCES `poblacion` (`cp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,40 +51,89 @@ INSERT INTO `clientes` VALUES (1,33342,'AVENIDA DEL MENDIGO, 51','DESAX','ROCIO'
 UNLOCK TABLES;
 
 --
--- Table structure for table `compras`
+-- Table structure for table `detalle_facturas`
 --
 
-DROP TABLE IF EXISTS `compras`;
+DROP TABLE IF EXISTS `detalle_facturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `compras` (
-  `id_compras` int NOT NULL AUTO_INCREMENT,
-  `id_proveedores` int NOT NULL,
-  `lote_inicial_compras` varchar(45) NOT NULL,
-  `codalbaran` varchar(45) NOT NULL,
-  `nombreproducto` varchar(45) NOT NULL,
-  `fechacompra` date NOT NULL,
-  `preciokilolitro` decimal(10,2) NOT NULL,
-  `kiloslitros` decimal(10,2) NOT NULL,
-  `controltemp` decimal(3,2) DEFAULT NULL,
-  `devolucion` int DEFAULT NULL,
-  `motivodev` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_compras`,`lote_inicial_compras`),
-  UNIQUE KEY `lote_inicial_compras_UNIQUE` (`lote_inicial_compras`),
-  UNIQUE KEY `codalbaran_UNIQUE` (`codalbaran`),
-  KEY `id_proveedor_idx` (`id_proveedores`),
-  CONSTRAINT `id_proveedores` FOREIGN KEY (`id_proveedores`) REFERENCES `proveedores` (`id_proveedores`)
-) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `detalle_facturas` (
+  `id_detalle_facturas` bigint NOT NULL AUTO_INCREMENT,
+  `id_facturas` bigint NOT NULL,
+  `id_lotes` bigint NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id_detalle_facturas`),
+  KEY `id_facturas_idx` (`id_facturas`),
+  KEY `id_lotes_idx` (`id_lotes`),
+  CONSTRAINT `id_facturas` FOREIGN KEY (`id_facturas`) REFERENCES `facturas` (`id_facturas`),
+  CONSTRAINT `id_lotes_facturas` FOREIGN KEY (`id_lotes`) REFERENCES `lotes` (`id_lotes`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `compras`
+-- Dumping data for table `detalle_facturas`
 --
 
-LOCK TABLES `compras` WRITE;
-/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
-INSERT INTO `compras` VALUES (1,1,'POLICLAR1','ALB12345CMPR1','MADERA PINO','2022-12-12',18.25,200.00,NULL,NULL,NULL),(2,3,'MONATURE2','ALB12345CMPR2','OREGANO','2022-12-24',5.66,30.00,NULL,NULL,NULL),(3,3,'MONATURE1','ALB12345CMPR3','PEREJIL','2022-12-16',4.63,50.00,NULL,NULL,NULL),(4,2,'KOROSHI1','ALB12345CMPR4','SUSHI ROJO','2022-12-18',11.90,10.00,-3.00,NULL,NULL),(5,1,'POLICLAR2','ALB12345CMPR5','MADERA ROBLE','2022-12-27',25.90,600.00,NULL,NULL,NULL),(6,2,'KOROSHI2','ALB12345CMPR6','SUSHI BLANCO','2022-12-26',14.90,10.00,-3.00,NULL,NULL);
-/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+LOCK TABLES `detalle_facturas` WRITE;
+/*!40000 ALTER TABLE `detalle_facturas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalle_facturas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `facturas`
+--
+
+DROP TABLE IF EXISTS `facturas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `facturas` (
+  `id_facturas` bigint NOT NULL AUTO_INCREMENT,
+  `id_clientes` bigint NOT NULL,
+  `cod_albaran` bigint NOT NULL,
+  `fecha_factura` date NOT NULL,
+  PRIMARY KEY (`id_facturas`),
+  KEY `id_clientes_idx` (`id_clientes`),
+  CONSTRAINT `id_clientes` FOREIGN KEY (`id_clientes`) REFERENCES `clientes` (`id_clientes`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `facturas`
+--
+
+LOCK TABLES `facturas` WRITE;
+/*!40000 ALTER TABLE `facturas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `facturas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lotes`
+--
+
+DROP TABLE IF EXISTS `lotes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `lotes` (
+  `id_lotes` bigint NOT NULL AUTO_INCREMENT,
+  `lote` varchar(45) NOT NULL,
+  `fecha_registro` date NOT NULL,
+  `fecha_caducidad` date DEFAULT NULL,
+  `kiloslitros` decimal(10,2) NOT NULL,
+  `preciokilolitro` decimal(10,2) NOT NULL,
+  `controltemp` decimal(3,2) DEFAULT NULL,
+  `estado` int DEFAULT NULL,
+  PRIMARY KEY (`id_lotes`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lotes`
+--
+
+LOCK TABLES `lotes` WRITE;
+/*!40000 ALTER TABLE `lotes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lotes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -95,7 +144,7 @@ DROP TABLE IF EXISTS `mantenimyrepar`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mantenimyrepar` (
-  `id_myr` int NOT NULL,
+  `id_myr` bigint NOT NULL,
   `nombreobjeto` varchar(45) NOT NULL,
   `fecha` date NOT NULL,
   `coste` decimal(10,2) NOT NULL,
@@ -121,8 +170,8 @@ DROP TABLE IF EXISTS `poblacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `poblacion` (
-  `id_poblacion` int NOT NULL AUTO_INCREMENT,
-  `cp` int NOT NULL,
+  `id_poblacion` bigint NOT NULL AUTO_INCREMENT,
+  `cp` bigint NOT NULL,
   `desmunicipio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `desprovincia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `com_autonoma` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -149,35 +198,37 @@ INSERT INTO `poblacion` VALUES (31676,38687,'Aponte','Santa Cruz de Tenerife','C
 UNLOCK TABLES;
 
 --
--- Table structure for table `produccion`
+-- Table structure for table `productos`
 --
 
-DROP TABLE IF EXISTS `produccion`;
+DROP TABLE IF EXISTS `productos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `produccion` (
-  `id_produccion` int NOT NULL AUTO_INCREMENT,
-  `lote_inicial_prod` varchar(45) NOT NULL,
-  `lote_final_prod` varchar(45) NOT NULL,
-  `nombreproducto` varchar(45) NOT NULL,
-  `fechaproduccion` date NOT NULL,
-  `kiloslitros` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id_produccion`,`lote_inicial_prod`,`lote_final_prod`),
-  UNIQUE KEY `lote_final_prod_UNIQUE` (`lote_final_prod`),
-  KEY `lote_inicial_idx` (`lote_inicial_prod`),
-  KEY `lote_final_idx` (`lote_final_prod`),
-  CONSTRAINT `lote_inicial` FOREIGN KEY (`lote_inicial_prod`) REFERENCES `compras` (`lote_inicial_compras`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `productos` (
+  `id_productos` bigint NOT NULL AUTO_INCREMENT,
+  `id_proveedor` bigint NOT NULL,
+  `id_lotes` bigint NOT NULL,
+  `nombre_producto` varchar(45) NOT NULL,
+  `fecha_caducidad` date DEFAULT NULL,
+  `controltemp` decimal(3,2) NOT NULL,
+  `devolucion` int DEFAULT NULL,
+  `motivo_devolucion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_productos`),
+  KEY `id_proveedores_idx` (`id_proveedor`),
+  KEY `id_lotes_idx` (`id_lotes`),
+  KEY `id_lotes_productos_idx` (`id_lotes`),
+  CONSTRAINT `id_lotes_productos` FOREIGN KEY (`id_lotes`) REFERENCES `lotes` (`id_lotes`),
+  CONSTRAINT `id_proveedores` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id_proveedores`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `produccion`
+-- Dumping data for table `productos`
 --
 
-LOCK TABLES `produccion` WRITE;
-/*!40000 ALTER TABLE `produccion` DISABLE KEYS */;
-INSERT INTO `produccion` VALUES (1,'POLICLAR1','POLICLAR12','MADERA PINO X3','2023-01-12',66.66),(2,'POLICLAR1','POLICLAR14','MADERA PINO X4','2023-01-23',66.66),(3,'POLICLAR1','POLICLAR13','MADERA PINO X5','2023-01-22',66.66),(4,'MONATURE2','MONATURE214','HARINA OREGANO SF1','2023-01-08',15.00),(5,'MONATURE2','MONATURE213','HARINA OREGANO SF2','2023-01-02',15.00),(6,'POLICLAR2','POLICLAR235','MADERA ROBLE EXT5','2023-01-06',300.00),(7,'POLICLAR2','POLICLAR236','MADERA ROBLE EXT6','2023-01-11',300.00),(8,'KOROSHI2','KOROSHI2986','SHUSHI BLANCO BANDEJA2','2023-01-15',3.33),(9,'KOROSHI2','KOROSHI2985','SHUSHI BLANCO BANDEJA1','2023-01-04',3.33),(10,'KOROSHI2','KOROSHI2987','SHUSHI BLANCO BANDEJA3','2023-01-18',3.33);
-/*!40000 ALTER TABLE `produccion` ENABLE KEYS */;
+LOCK TABLES `productos` WRITE;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -188,18 +239,18 @@ DROP TABLE IF EXISTS `proveedores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proveedores` (
-  `id_proveedores` int NOT NULL AUTO_INCREMENT,
-  `cp_proveedor` int NOT NULL,
+  `id_proveedores` bigint NOT NULL AUTO_INCREMENT,
+  `cp_proveedor` bigint NOT NULL,
   `direccion` varchar(45) NOT NULL,
-  `nombreproveedor` varchar(45) NOT NULL,
-  `nombrecontacto` varchar(45) NOT NULL,
-  `ape1contacto` varchar(45) NOT NULL,
-  `ape2contacto` varchar(45) DEFAULT NULL,
+  `nombre_empresa` varchar(45) NOT NULL,
+  `nombre_contacto` varchar(45) NOT NULL,
+  `ape1_contacto` varchar(45) NOT NULL,
+  `ape2_contacto` varchar(45) DEFAULT NULL,
   `telefono` int NOT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
   PRIMARY KEY (`id_proveedores`),
   KEY `cp_poblacion_idx` (`cp_proveedor`),
-  CONSTRAINT `cp_poblacion_proveedor` FOREIGN KEY (`cp_proveedor`) REFERENCES `poblacion` (`cp`)
+  CONSTRAINT `cp_poblacion_proveedores` FOREIGN KEY (`cp_proveedor`) REFERENCES `poblacion` (`cp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -221,7 +272,7 @@ DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
-  `id_roles` int NOT NULL,
+  `id_roles` bigint NOT NULL,
   `nombrerol` varchar(45) NOT NULL,
   PRIMARY KEY (`id_roles`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -245,8 +296,8 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
-  `id_usuarios` int NOT NULL,
-  `id_roles` int NOT NULL,
+  `id_usuarios` bigint NOT NULL,
+  `id_roles` bigint NOT NULL,
   `nombreusuario` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `nombrecontacto` varchar(45) NOT NULL,
@@ -266,41 +317,8 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,'ADMIN','1234','ADMIN','ADMIN','ADMIN','13456789',NULL),(2,2,'USER','1234','USER','USER','USER','13456789',NULL),(3,3,'USERPRO','1234','USERPRO','USERPRO','USERPRO','13456789',NULL);
+INSERT INTO `usuarios` VALUES (1,1,'ADMIN','1234','ADMIN','ADMIN','ADMIN','13456789','admin@diamadmin.es'),(2,2,'USER','1234','USER','USER','USER','13456789','user@diamadmin.es'),(3,3,'USERPRO','1234','USERPRO','USERPRO','USERPRO','13456789','userpro@diamadmin.es');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ventas`
---
-
-DROP TABLE IF EXISTS `ventas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ventas` (
-  `id_ventas` int NOT NULL AUTO_INCREMENT,
-  `id_clientes` int NOT NULL,
-  `lote_final_ventas` varchar(45) NOT NULL,
-  `codalbaran` varchar(45) NOT NULL,
-  `fechaventa` varchar(45) NOT NULL,
-  `preciokilolitro` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id_ventas`,`lote_final_ventas`),
-  UNIQUE KEY `lote_final_ventas_UNIQUE` (`lote_final_ventas`),
-  KEY `id_clientes_idx` (`id_clientes`),
-  KEY `lote_final_idx` (`lote_final_ventas`),
-  CONSTRAINT `id_clientes` FOREIGN KEY (`id_clientes`) REFERENCES `clientes` (`id_clientes`),
-  CONSTRAINT `lote_final` FOREIGN KEY (`lote_final_ventas`) REFERENCES `produccion` (`lote_final_prod`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ventas`
---
-
-LOCK TABLES `ventas` WRITE;
-/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` VALUES (1,1,'POLICLAR12','ALB12345VNT1','2023-01-12',22.90),(2,2,'KOROSHI2986','ALB12345VNT2','2023-01-14',6.50),(3,2,'KOROSHI2987','ALB12345VNT3','2023-01-15',6.50),(4,3,'MONATURE213','ALB12345VNT4','2023-01-18',4.90),(5,1,'POLICLAR13','ALB12345VNT5','2023-01-22',22.90),(6,3,'MONATURE214','ALB12345VNT6','2023-01-28',4.90);
-/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -320,4 +338,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-20 14:58:54
+-- Dump completed on 2022-11-28 17:12:57

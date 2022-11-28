@@ -1,6 +1,8 @@
 package com.bohdeveloper.diamadmin.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -8,8 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,46 +23,28 @@ import lombok.ToString;
 
 @Entity
 @Data
-@Table(name = "poblacion")
+@Table(name = "produccion")
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Poblacion {
+public class Facturas {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Long idPoblacion;
-	 
+	 private Long idFacturas;
+	
+	 @NotNull(message = "El código del albarán es obligatorio")
 	 @Basic(optional = false)
-	 private Long cp;
+	 private BigDecimal codAlbaran;
 	 
+	 @NotNull(message = "La fecha de la factura es obligatoria")
 	 @Basic(optional = false)
-	 private String desMunicipio;
+	 private Date fechaFactura;
 	 
-	 @Basic(optional = false)
-	 private String desProvincia;
-	 
-	 @Basic(optional = false)
-	 private String comAutonoma;
-	 
-	 @Basic(optional = false)
-	 private String pais;
-	 
-	 @Basic(optional = false)
-	 private String paisCorto;
-	 
-	 @Basic(optional = false)
-	 private String lat;
-	 
-	 @Basic(optional = false)
-	 private String lng;
+	 @ManyToOne(optional = false)
+	 private Clientes clientes;
 	 
 	 @EqualsAndHashCode.Exclude
 	 @ToString.Exclude
-	 @OneToMany(mappedBy = "poblacion")
-	 private List<Proveedores> proveedores = new ArrayList<>();
-	 
-	 @EqualsAndHashCode.Exclude
-	 @ToString.Exclude
-	 @OneToMany(mappedBy = "poblacion")
-	 private List<Clientes> clientes = new ArrayList<>();
+	 @OneToMany(mappedBy = "facturas")
+	 private List<DetalleFacturas> detallesFacturas = new ArrayList<>();
 }
