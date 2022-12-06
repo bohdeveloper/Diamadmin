@@ -86,10 +86,15 @@ public class UsuariosController {
     public String getMantenimiento(HttpServletRequest request, Model model, @PathVariable(value = "id") Long id) {
     	if(!id.toString().equals("0")) {
     		model.addAttribute("id", id);
+    		Usuarios usuarios = new Usuarios();
+        	usuarios.setIdUsuarios(id);
+        	model.addAttribute("usuarios", usuarios);
     	} else {
     		model.addAttribute("id", null);
+    		Usuarios usuarios = new Usuarios();
+        	model.addAttribute("usuarios", usuarios);
     	}
-    	request.setAttribute("rutaLogo", "../../");
+    	request.setAttribute("rutaLogo", "../../../");
     	return "app/usuarios/usuariosDetalle";    	
     }
     

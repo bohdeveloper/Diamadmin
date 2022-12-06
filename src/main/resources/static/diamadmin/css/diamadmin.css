@@ -1,3 +1,22 @@
+/*General*/
+
+thead {
+	font-size: 1.2rem;
+}
+
+/*Eventos de ratón*/
+
 .cursor-pointer{
 	cursor: pointer;	
+}
+.cursor-none{	
+	pointer-events: none;
+}
+
+/* Responsive para móvil */
+
+@media only screen and (max-width: 768px) {
+  th{
+  	font-size: 0.5rem;
+  }
 }
