@@ -4,6 +4,10 @@ thead {
 	font-size: 1.2rem;
 }
 
+body {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
 /*Eventos de ratón*/
 
 .cursor-pointer{
