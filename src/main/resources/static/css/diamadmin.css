@@ -1,5 +1,4 @@
 /*General*/
-
 thead {
 	font-size: 1.2rem;
 }
@@ -8,17 +7,33 @@ body {
 	font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/*Eventos de ratón*/
+footer {
+	width: 100%;
+	height: 12rem;
+}
 
+/*Estilos para imágenes*/
+.fondoIndex {
+	width: 100%;
+  	height: 40.5rem !important;
+	background-image: url("../images/fondo_index1.jpg") !important;
+	background-size: 100% 40.5rem;
+	background-repeat: no-repeat;
+	opacity: 0.8;
+}
+
+/*Tamaño de elementos*/
+
+
+/*Eventos de ratón*/
 .cursor-pointer{
 	cursor: pointer;	
 }
 .cursor-none{	
 	pointer-events: none;
-}
+}	
 
 /* Responsive para móvil */
-
 @media only screen and (max-width: 768px) {
   th{
   	font-size: 0.5rem;

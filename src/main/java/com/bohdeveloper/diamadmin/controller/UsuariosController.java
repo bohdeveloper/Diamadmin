@@ -1,7 +1,5 @@
 package com.bohdeveloper.diamadmin.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,15 +73,15 @@ public class UsuariosController {
     }
     
     @GetMapping(value = "/maint")
-    public String getMaint(HttpServletRequest request, Model model) {
+    public String getMaint(Model model) {
         Iterable<Usuarios> usuarios = this.usuariosService.getAllUsuarios();
-        request.setAttribute("usuarios", usuarios);
-        request.setAttribute("rutaLogo", "../../");
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("rutaLogo", "../../");
     	return "app/usuarios/usuariosMaint";    	
     }
     
     @GetMapping(value = "/detalle/{id}")
-    public String getMantenimiento(HttpServletRequest request, Model model, @PathVariable(value = "id") Long id) {
+    public String getMantenimiento(Model model, @PathVariable(value = "id") Long id) {
     	if(!id.toString().equals("0")) {
     		model.addAttribute("id", id);
     		Usuarios usuarios = new Usuarios();
@@ -94,7 +92,7 @@ public class UsuariosController {
     		Usuarios usuarios = new Usuarios();
         	model.addAttribute("usuarios", usuarios);
     	}
-    	request.setAttribute("rutaLogo", "../../../");
+    	model.addAttribute("rutaLogo", "../../../");
     	return "app/usuarios/usuariosDetalle";    	
     }
     

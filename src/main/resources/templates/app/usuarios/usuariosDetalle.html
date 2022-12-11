@@ -1,29 +1,29 @@
 <div th:replace="~{inc/head}"></div>
 <div th:replace="~{inc/navigation}"></div>
-	    <section>
-	        <article>
-	            <header>
-	            	<div class="d-flex justify-content-between">
-		                <h1>NUEVO USUARIO</h1><h1>EDITAR USUARIO</h1>	                
-	            	</div>
-	            </header>
-	        </article>
-	        <form th:action="@{/app/usuarios/add}" th:object="${usuarios}" method="post">
-	        	<input class="d-none" id="idUsuario" value="${usuarios.idUsuarios}" />
-			    <fieldset>
-			        <legend>Datos del usuario</legend>
-			        <table>
-			            <tr>
-			                <td><label th:text="#{usuarios.nombreUsuario}">Nombre: </label></td>
-			                <td><input type="text" th:field="*{nombreUsuario}" /></td>
-			            </tr>			         	           
-			            <tr>
-			                <td>
-			                    <button type="submit">Registrar...</button>
-			                </td>
-			            </tr>
-			        </table>
-			    </fieldset>
-			</form>
-	    </section>
+    <section>
+        <article>
+            <header>
+            	<div class="d-flex justify-content-between">
+	                <h1>NUEVO USUARIO</h1><h1>EDITAR USUARIO</h1>	                
+            	</div>
+            </header>
+        </article>
+        <form th:action="@{/app/usuarios/add}" th:object="${usuarios}" method="post">
+        	<input class="d-none" id="idUsuario" value="${usuarios.idUsuarios}" />
+		    <fieldset>
+		        <legend>Datos del usuario</legend>
+		        <table>
+		            <tr>
+		                <td><label th:text="#{usuarios.nombreUsuario}">Nombre: </label></td>
+		                <td><input type="text" th:field="*{nombreUsuario}" /></td>
+		            </tr>			         	           
+		            <tr>
+		                <td>
+		                    <button type="submit">Registrar...</button>
+		                </td>
+		            </tr>
+		        </table>
+		    </fieldset>
+		</form>
+    </section>
 <div th:replace="~{inc/footer}"></div>

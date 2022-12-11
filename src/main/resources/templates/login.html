@@ -1,15 +1,17 @@
 <div th:replace="~{inc/head}"></div>
 <div th:replace="~{inc/navigation}"></div>
-      	<div th:if="${param.error}">
-            Usuario o contraseña incorrecta
-        </div>
-        <div th:if="${param.logout}">
-            Acabas de cerrar la sesión
-        </div>
-        <form th:action="@{/login}" method="post">
-            <input type="text" class="form-control" placeholder="Nombre de usuario" name="username">
-            <input type="password" class="form-control" placeholder="Contraseña" name="password">
-            <button type="submit" class="btn btn-danger w-25 mt-3 mr-3">Entrar</button>
-        </form>
-        <a href="#" th:href="@{/signin}" class="text-danger ml-3 pt-4">Aún no me conoceis</a>
+	<section class="fondoIndex">
+		<div th:if="${param.error}">
+	        Usuario o contraseña incorrecta
+	    </div>
+	    <div th:if="${param.logout}">
+	        Acabas de cerrar la sesión
+	    </div>
+	    <form th:action="@{/login}" method="post">
+	        <input type="text" class="form-control" placeholder="Nombre de usuario" name="username">
+	        <input type="password" class="form-control" placeholder="Contraseña" name="password">
+	        <button type="submit" class="btn btn-primary w-25 mt-3 mr-3">Entrar</button>
+	    </form>
+	    <a href="#" th:href="@{/signin}" class="text-primary ml-3 pt-4">Aún no me conoceis</a>
+    </section>
 <div th:replace="~{inc/footer}"></div>
