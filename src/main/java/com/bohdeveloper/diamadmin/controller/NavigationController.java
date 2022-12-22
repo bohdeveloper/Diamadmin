@@ -11,32 +11,27 @@ public class NavigationController {
 	
     @GetMapping({"/", "/welcome"})
     public String getIndex(Model model) {
-    	model.addAttribute("rutaLogo", "");
         return "index";
     }
     
     @GetMapping("/login")
     public String getLogin(Model model) {
-    	model.addAttribute("rutaLogo", "");
         return "login";
     }
     
     @GetMapping("/signin")
     public String getSignin(Model model) {
-    	model.addAttribute("rutaLogo", "");
         return "signin";
     }
     
     @GetMapping("/app")
     public String getApp(Model model) {
-    	model.addAttribute("rutaLogo", "");
     	model.addAttribute("usuarios", new Usuarios());
         return "app/home";
     }
     
     @GetMapping("/error")
     public String getError(Model model) {
-    	model.addAttribute("rutaLogo", "");
         return "error";
     }
 

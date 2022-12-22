@@ -76,7 +76,6 @@ public class UsuariosController {
     public String getMaint(Model model) {
         Iterable<Usuarios> usuarios = this.usuariosService.getAllUsuarios();
         model.addAttribute("usuarios", usuarios);
-        model.addAttribute("rutaLogo", "../../");
     	return "app/usuarios/usuariosMaint";    	
     }
     
@@ -92,7 +91,6 @@ public class UsuariosController {
     		Usuarios usuarios = new Usuarios();
         	model.addAttribute("usuarios", usuarios);
     	}
-    	model.addAttribute("rutaLogo", "../../../");
     	return "app/usuarios/usuariosDetalle";    	
     }
     
