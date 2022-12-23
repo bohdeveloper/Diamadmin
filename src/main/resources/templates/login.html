@@ -1,16 +1,35 @@
 <div th:replace="~{inc/head}"></div>
-	<section class="fondoIndex">
-		<div th:if="${param.error}">
-	        Usuario o contraseña incorrecta
-	    </div>
+	<section class="fondo">
+	
+		<div class="login-target">
+			<p class="text-center pt-5">
+				<a href="#" th:href="@{/}">
+					<img src="#" th:src="@{'images/logo/logo_icon1.png'}" alt="Diamadmin">
+				</a>
+			</p>
+			<h1 class="text-center mb-3">Inicia sesión en <strong class="text-primary">Diamadmin</strong></h1>
+			<div class="m-2" th:if="${param.error}">
+		       <p class="text-danger text-center">Usuario o contraseña incorrecta</p>
+		    </div>
+			<form th:action="@{/login}" method="post">
+		        <input class="d-none" id="location" value="login">
+		        <input type="text" class="form-control m-2" placeholder="Nombre de usuario" name="username">
+		        <input type="password" class="form-control m-2" placeholder="Contraseña" name="password">
+		        <button type="submit" class="btn btn-primary w-100 m-2">Entrar</button>
+	    	</form>
+	    	<p class="m-2">
+		        ¿Nuevo en Diamadmin?  
+		        <a href="#" th:href="@{/signin}" class="text-primary">Crea una cuenta</a>
+		    </p>
+		</div>
+	
+	    
+	    <!--
 	    <div th:if="${param.logout}">
 	        Acabas de cerrar la sesión
 	    </div>
-	    <form th:action="@{/login}" method="post">
-	        <input type="text" class="form-control" placeholder="Nombre de usuario" name="username">
-	        <input type="password" class="form-control" placeholder="Contraseña" name="password">
-	        <button type="submit" class="btn btn-primary w-25 mt-3 mr-3">Entrar</button>
-	    </form>
-	    <a href="#" th:href="@{/signin}" class="text-primary ml-3 pt-4">Aún no me conoceis</a>
+	    -->  
+	    
+	   
     </section>
 <div th:replace="~{inc/footer}"></div>

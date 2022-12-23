@@ -43,24 +43,31 @@
 </head>
 <body>
 	<header class="navbar navbar-expand flex-column flex-md-row bd-navbar">
-	  <div class="w-100 d-flex justify-content-start">
+	  <div class="w-100 d-flex justify-content-between">
     	<a class="navbar-brand" href="#" th:href="@{/}"><img src="#" th:src="@{'images/logo/logobluenavbar1.png'}" alt="Diamadmin" id="logo"></a>
-       	<ul class="navbar-nav align-items-center ps-3">
+       	<ul class="navbar-nav align-items-center pe-4">
        
-			<!-- 
+			<!--
        	
 	        <li class="nav-item p-1">
 	          <a class="nav-link active" aria-current="page" href="#" th:href="@{/app}">Home</a>
 	        </li>
 	        
-	         -->
+	         -->	
+	         
+	        <li class="nav-item p-2">
+	          <a class="nav-link navlink" href="#" th:href="@{/producto}">Producto</a>
+	        </li>     
 	        
+	        <li class="nav-item p-2">
+	          <a class="nav-link navlink" href="#" th:href="@{/login}">Acceso</a>
+	        </li>    
 	        
-	        <li class="nav-item p-1">
-	          <a class="nav-link" href="#" th:href="@{/login}">Log-in</a>
+	        <li class="nav-item p-2">
+	          <a class="nav-link navlink" href="#" th:href="@{/signin}">Registro</a>
 	        </li>
 	        
-	    	 <li th:if="${usuarios != null}" class="nav-item p-1">
+	    	 <li th:if="${usuarios != null}" class="nav-item p-2">
 	           	<form th:action="@{/logout}" method="post">
 	           		<button class="btn btn-danger ms-3">CERRAR SESIÓN</button>
 	           	</form>
