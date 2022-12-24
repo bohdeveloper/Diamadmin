@@ -3,6 +3,7 @@ package com.bohdeveloper.diamadmin.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.bohdeveloper.diamadmin.model.Usuarios;
 
@@ -19,9 +20,15 @@ public class NavigationController {
         return "login";
     }
     
-    @GetMapping("/signin")
-    public String getSignin(Model model) {
-        return "signin";
+    @GetMapping("/signup")
+    public String getSignup(Model model) {
+        return "registro";
+    }
+    
+    @GetMapping("/signupcheck")
+    public Usuarios getSignupcheck(Model model, @RequestBody Usuarios usuarios) {
+    	System.out.println(usuarios);
+        return usuarios;
     }
     
     @GetMapping("/app")

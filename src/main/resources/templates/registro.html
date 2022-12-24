@@ -1,0 +1,32 @@
+<div th:replace="~{inc/head}"></div>
+	<section class="fondo">
+		<div class="signup-target">
+			<div class="d-flex justify-content-between align-items-center pt-5">
+				<a href="#" th:href="@{/}">
+					<img src="#" th:src="@{'images/logo/logo_icon1.png'}" alt="Diamadmin">
+				</a>
+				<p class="text-center mb-3 h5">¿Ya tienes una cuenta?<strong class="text-primary"><a href="#" th:href="@{/login}"> Accede</a></strong></p>
+			</div>
+			
+			<div class="mt-5">
+				<h2 class="animText1 h5">¡Bienvenidx a Diamadmin!</h2>
+				<h2 class="animText2 h5">Ponemos en orden tu información.</h2>
+			</div>
+			
+			
+			<form th:action="@{/signupcheck}" method="post">
+		        <input class="d-none" id="location" value="signup">
+		        <div class="border p-3">
+			        <label for="username">Nombre de usuario / email</label>
+			        <input type="text" id="email" class="form-control w-75" name="email">
+			        
+			        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+		        </div>
+	    	</form>	       		   
+	        <div class="d-flex justify-content-between m-2 p-2">
+		        <p>¿Nuevo en Diamadmin?</p>
+		         <a href="#" th:href="@{/signup}" class="text-primary">Crea una cuenta</a>
+	        </div>
+		</div>
+	</section>
+<div th:replace="~{inc/footer}"></div>
