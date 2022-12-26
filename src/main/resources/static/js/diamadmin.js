@@ -5,6 +5,10 @@ $(document).ready(function(){
     if($('#location').val() == "login" || $('#location').val() == "signup") {
       $('.bd-navbar').addClass('d-none');
     }
+    
+    //REGISTRO
+    //Ocultar/Mostrar grupos
+    $('#singup-email-group').hide();
 
     //USUARIOS
     //Doble click para editar usuarios
@@ -82,8 +86,9 @@ $(document).ready(function(){
 	
 	//you can use an async function to animate one element at a time
 	async function animateAll () {
-	  await writeAnimation(animText1, 35, 1)
-	  await writeAnimation(animText2, 35, 1)
+	  await writeAnimation(animText1, 30, 1)
+	  await writeAnimation(animText2, 30, 1)
+	  $('#singup-email-group').show();
 	};
 	
 	animateAll();
