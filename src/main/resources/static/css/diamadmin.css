@@ -36,6 +36,14 @@ footer {
 	border-radius: 16px;
 }
 
+/* Estilo inputs */
+.signup-input-ok {
+	border: 2px solid green;
+}
+.signup-input-ko {
+	border: 2px solid red;
+}
+
 /* Eventos de ratón */
 .cursor-pointer {
 	cursor: pointer;	
@@ -62,7 +70,6 @@ footer {
   font-family: monospace;
   opacity: 0
 }
-
 
 /* Estilos para imágenes */
 .fondo {
@@ -99,6 +106,9 @@ footer {
 	
 /* Responsive móvil */
 @media (max-width: 991.98px) {
+	input{
+		font-size: 0.8rem !important;
+	}
   	#logo {
 	  	width: 150px;
 	  	height: 39px;
@@ -108,8 +118,16 @@ footer {
     	font-size: 0.8rem;
 	}
 	.signup-target {
-	    width: 300px;
+	    width: 340px;
 	    margin: 0 auto;
 	}
-
+	.signupText1 {
+		font-size: 1rem;
+	}
+	.animText1 {
+		font-size: 1rem;
+	}
+	.animText2 {
+		font-size: 1rem;
+	}
 }
