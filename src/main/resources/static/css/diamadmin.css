@@ -1,5 +1,6 @@
 /*General*/
-body {
+html, body {
+	width: 100%; height:100%;
 	font-family: 'Plus Jakarta Sans', sans-serif;
 }
 a:link, a:visited, a:active {
@@ -7,7 +8,9 @@ a:link, a:visited, a:active {
 }
 footer {
 	width: 100%;
-	height: 12rem;
+	height: 3%;
+	background-color: #3C92CF;
+	border-top: 2px solid #378AC4;
 }
 .navlink {
 	color: #137DC5;
@@ -31,18 +34,6 @@ footer {
 .login-link{
 	font-size: 0.8rem;
 }
-.info-registro-target {
-	background-color: #F7F1F0;
-	border-radius: 16px;
-}
-
-/* Estilo inputs */
-.signup-input-ok {
-	border: 2px solid green;
-}
-.signup-input-ko {
-	border: 2px solid red;
-}
 
 /* Eventos de ratón */
 .cursor-pointer {
@@ -53,28 +44,16 @@ footer {
 }	
 
 /* Animaciones */
-.selected:after {
-    content: '|'; /* the "|" character is also a good option */
-    opacity: 0;
-    animation: blinking 1s infinite steps(2, jump-none);
-}
-@keyframes blinking {
-    from {
-        opacity: 0
-    }
-    to {
-        opacity: 1
-    }
-}
-.animText1, .animText2 {
-  font-family: monospace;
-  opacity: 0
-}
+
 
 /* Estilos para imágenes */
 .fondo {
 	width: 100%;
-  	height: 40.5rem !important;
+  	height: 97% !important;
+  	padding-top: 8rem;
+  	background-image: url("../images/bg3.png");  
+  	background-repeat: no-repeat;
+  	background-size: cover;	
 }
 
 /*Estilos para el navbar */
@@ -93,12 +72,12 @@ footer {
 	#logo {
 	  	margin-left: 1rem;
   	}
+  	#logo_md {
+  		width: 15rem;
+  		height: 15rem;
+  	}
 	.nav-item a {
 	   	font-size: 1.2rem;
-	}
-	.signup-target {
-	    width: 600px;
-	    margin: 0 auto;
 	}
 
 }
@@ -117,17 +96,5 @@ footer {
   	.nav-item a {
     	font-size: 0.8rem;
 	}
-	.signup-target {
-	    width: 340px;
-	    margin: 0 auto;
-	}
-	.signupText1 {
-		font-size: 1rem;
-	}
-	.animText1 {
-		font-size: 1rem;
-	}
-	.animText2 {
-		font-size: 1rem;
-	}
+
 }
