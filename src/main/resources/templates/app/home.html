@@ -1,21 +1,32 @@
 <div th:replace="~{inc/head}"></div>
     <section class="fondo">
-        <article>
-            <header>
-                <h1>APLICACIÓN</h1>
-            </header>
-            <div>
-               TABLA MANTENIMIENTO
-            </div>
-        </article>
-        <article>
-            <header>
-                <h1>USUARIOS #2</h1>
-                <a href="#" th:href="@{/app/usuarios/maint}">Usuarios</a>
-            </header>
-            <div>
-                This is the second article.  These articles could be blog posts, etc.  
-            </div>
-        </article>
+		<div class="row">
+			<div class="col-4">
+				COMPRAS Y DEVOLUCIONES
+			</div>
+			<div class="col-4">
+				PRODUCCIÓN
+			</div>
+			<div class="col-4">
+				VENTAS
+			</div>
+			<div class="col-4">
+				PROVEEDORES
+			</div>
+			<div class="col-4">
+				CLIENTES
+			</div>
+			<div class="col-4">
+				MANTENIMIENTO Y REPARACIONES
+			</div>
+		</div>
     </section>
+    
+    
+<!-- 
+<header>
+    <h1>USUARIOS #2</h1>
+    <a href="#" th:href="@{/app/usuarios/maint}">Usuarios</a>
+</header>
+-->
 <div th:replace="~{inc/footer}"></div>
