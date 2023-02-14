@@ -1,7 +1,7 @@
 /*General*/
 html, body {
-	width: 100%; height:100%;
-	font-family: 'Plus Jakarta Sans', sans-serif;
+  height: 100%;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 a:link, a:visited, a:active {
     text-decoration: none;
@@ -30,6 +30,7 @@ footer {
 .login-target {
     width: 340px;
     margin: 0 auto;
+    padding-top: 7rem;
 }
 .login-link{
 	font-size: 0.8rem;
@@ -47,28 +48,48 @@ footer {
 
 
 /* Estilos para imágenes */
-.fondo {
+#fondo_login {
 	width: 100%;
   	height: 97%;
-  	padding-top: 8rem;
   	background-image: url("../images/bg3.png");  
   	background-repeat: no-repeat;
   	background-size: cover;	
 }
+#fondo_home {
+	width: 100%;
+  	height: 97%;
+}
+#home_compDev_link {
+  	background-image: url("../images/homelinks/compras_devoluciones.png");  
+}
+#home_prod_link {
+  	background-image: url("../images/homelinks/produccion.png");  
+}
+#home_ventas_link {
+  	background-image: url("../images/homelinks/ventas.png");  
+}
+#home_prove_link {
+  	background-image: url("../images/homelinks/proveedores.png");  
+}
+#home_client_link {
+  	background-image: url("../images/homelinks/clientes.png");  
+}
+#home_mantRep_link {
+  	background-image: url("../images/homelinks/mant_rep.png");  
+}
 
 /*Estilos para el navbar */
 .bd-navbar {
-	min-height: 4rem;
+	height: 4rem;
     background-color: #ffffff;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 10%);
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1071;
 }
 
 /* Responsive max móvil */
 @media (min-width: 768px) {
+	body {
+	  overflow: hidden;
+	}
 	#logo {
 	  	margin-left: 1rem;
   	}
@@ -78,6 +99,24 @@ footer {
   	}
 	.nav-item a {
 	   	font-size: 1.2rem;
+	}
+	.fondo {
+		padding-top: 3rem;
+  		padding-left: 5rem;
+  		padding-right: 10rem;
+	}
+	.home_links {
+		display: block;
+	  	height: 25rem;
+	  	margin-top: 2rem;
+		background-repeat: no-repeat;
+  		background-size: cover;	
+		opacity: 0.5;
+  		transition: 0.3s;
+	}
+	
+	.home_links:hover {
+	  	opacity: 1
 	}
 
 }
@@ -95,6 +134,19 @@ footer {
   	}
   	.nav-item a {
     	font-size: 0.8rem;
+	}	
+	.bd-navbar {
+		position: -webkit-sticky;
+	    position: sticky;
+	    top: 0;
+	    z-index: 1071;
+	}	
+	.home_links {
+		display: block;
+		height: 17rem;
+		margin-top: 3rem;
+		background-repeat: no-repeat;
+  		background-size: contain;	
 	}
 
 }

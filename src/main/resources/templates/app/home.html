@@ -1,23 +1,24 @@
 <div th:replace="~{inc/head}"></div>
-    <section class="fondo">
+	<input class="d-none" id="location" value="home">
+    <section id="fondo_home">
 		<div class="row">
-			<div class="col-4">
-				COMPRAS Y DEVOLUCIONES
+			<div class="col-md-6 col-lg-4">
+				<a id="home_compDev_link" class="home_links" href="#" th:href="@{/compras_devol}"></a>				
 			</div>
-			<div class="col-4">
-				PRODUCCIÓN
+			<div class="col-md-6 col-lg-4">
+				<a id="home_prod_link" class="home_links" href="#" th:href="@{/produccion}"></a>				
 			</div>
-			<div class="col-4">
-				VENTAS
+			<div class="col-md-6 col-lg-4">
+				<a id="home_ventas_link" class="home_links" href="#" th:href="@{/ventas}"></a>
 			</div>
-			<div class="col-4">
-				PROVEEDORES
+			<div class="col-md-6 col-lg-4">
+				<a id="home_prove_link" class="home_links" href="#" th:href="@{/proveedores}"></a>				
 			</div>
-			<div class="col-4">
-				CLIENTES
+			<div class="col-md-6 col-lg-4">
+				<a id="home_client_link" class="home_links" href="#" th:href="@{/clientes}"></a>				
 			</div>
-			<div class="col-4">
-				MANTENIMIENTO Y REPARACIONES
+			<div class="col-md-6 col-lg-4">
+				<a id="home_mantRep_link" class="home_links" href="#" th:href="@{/mant_rep}"></a>
 			</div>
 		</div>
     </section>

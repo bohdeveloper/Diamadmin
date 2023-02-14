@@ -5,6 +5,10 @@ $(document).ready(function(){
     if($('#location').val() == "login") {
       $('.bd-navbar').addClass('d-none');
     }
+    //Ocultar dropdown administración
+    if($('#location').val() == "home") {
+      $('.dd_administracion').addClass('d-none');
+    }
 
     //USUARIOS
     //Doble click para editar usuarios
