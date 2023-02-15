@@ -1,0 +1,41 @@
+<div th:replace="~{inc/head}"></div>
+    <section>
+        <article>
+            <header>
+            	<div class="d-flex justify-content-between">
+	                <h1>CLIENTES</h1>
+            	</div>
+            </header>
+        </article>
+        <table class="table table-hover tblClientes">
+		   <thead>
+		      <tr>
+		         <th class="header cursor-none" scope="col">Dirección</th>
+		         <th class="header cursor-none" scope="col">Nombre de empresa</th>
+		         <th class="header cursor-none" scope="col">Nombre de contacto</th>
+		         <th class="header cursor-none" scope="col">Primer apellido</th>
+		         <th class="header cursor-none" scope="col">Segundo apellido</th>
+		         <th class="header cursor-none" scope="col">Télefono</th>
+		         <th class="header cursor-none" scope="col">Email</th>
+		         <th class="header" scope="col"><a href="#" th:href="@{/app/clientes/detalle/0}" class="d-flex"><em class="fas fa-plus fa-lg"></em><p class="pl-2 mb-0">Nuevo cliente</p></a></th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		   		<tr th:each="cli:${clientes}" class="cursor-pointer filaClientes">
+		   			<th scope="row" th:text="${cli.idClientes}" id="idCliente" class="d-none">
+		   			<th scope="row" th:text="${cli.direccion}">
+		   			<th scope="row" th:text="${cli.nombreEmpresa}">
+		   			<th scope="row" th:text="${cli.nombreContacto}">
+		   			<th scope="row" th:text="${cli.ape1Contacto}">
+		   			<th scope="row" th:text="${cli.ape2Contacto}">
+		   			<th scope="row" th:text="${cli.telefono}">
+		   			<th scope="row" th:text="${cli.email}">			
+		   			<th scope="row">
+		   				<a type="button" class="btn btn-outline-warning" href="#" th:href="@{/app/clientes/detalle/} + ${cli.idClientes}">Editar</a>
+		   				<a type="button" class="btn btn-outline-danger" href="#" th:href="@{/app/clientes/delete/} + ${cli.idClientes}">Eliminar</a>
+		   			</th>			
+		   		</tr>
+		   </tbody>
+		</table>	
+    </section>
+<div th:replace="~{inc/footer}"></div>

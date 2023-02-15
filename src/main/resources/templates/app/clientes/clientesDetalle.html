@@ -3,18 +3,18 @@
         <article>
             <header>
             	<div class="d-flex justify-content-between">
-	                <h1>NUEVO USUARIO</h1><h1>EDITAR USUARIO</h1>	                
+	                <h1>NUEVO CLIENTE</h1><h1>EDITAR CLIENTE</h1>	                
             	</div>
             </header>
         </article>
-        <form th:action="@{/app/usuarios/add}" th:object="${usuarios}" method="post">
-        	<input class="d-none" id="idUsuario" value="${usuarios.idUsuarios}" />
+        <form th:action="@{/app/clientes/add}" th:object="${clientes}" method="post">
+        	<input class="d-none" id="idCliente" value="${clientes.idClientes}" />
 		    <fieldset>
-		        <legend>Datos del usuario</legend>
+		        <legend>Datos del cliente</legend>
 		        <table>
 		            <tr>
-		                <td><label th:text="#{usuarios.nombreUsuario}">Nombre: </label></td>
-		                <td><input type="text" th:field="*{nombreUsuario}" /></td>
+		                <td><label th:text="#{clientes.nombreEmpresa}">Nombre de empresa: </label></td>
+		                <td><input type="text" th:field="*{nombreEmpresa}" /></td>
 		            </tr>			         	           
 		            <tr>
 		                <td>

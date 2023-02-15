@@ -3,6 +3,9 @@ html, body {
   height: 100%;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+body {
+  overflow: hidden;
+}
 a:link, a:visited, a:active {
     text-decoration: none;
 }
@@ -87,9 +90,6 @@ footer {
 
 /* Responsive max móvil */
 @media (min-width: 768px) {
-	body {
-	  overflow: hidden;
-	}
 	#logo {
 	  	margin-left: 1rem;
   	}
@@ -112,9 +112,8 @@ footer {
 		background-repeat: no-repeat;
   		background-size: cover;	
 		opacity: 0.5;
-  		transition: 0.3s;
-	}
-	
+  		transition: 0.5s;
+	}	
 	.home_links:hover {
 	  	opacity: 1
 	}
@@ -143,8 +142,8 @@ footer {
 	}	
 	.home_links {
 		display: block;
-		height: 17rem;
-		margin-top: 3rem;
+		height: 10rem;
+		margin-top: 5rem;
 		background-repeat: no-repeat;
   		background-size: contain;	
 	}
