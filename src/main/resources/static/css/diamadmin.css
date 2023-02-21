@@ -111,7 +111,7 @@ footer {
 	  	margin-top: 2rem;
 		background-repeat: no-repeat;
   		background-size: cover;	
-		opacity: 0.5;
+		opacity: 0.8;
   		transition: 0.5s;
 	}	
 	.home_links:hover {
@@ -142,10 +142,9 @@ footer {
 	}	
 	.home_links {
 		display: block;
-		height: 10rem;
-		margin-top: 5rem;
+		height: 15rem;
 		background-repeat: no-repeat;
-  		background-size: contain;	
+  		background-size: cover;	
 	}
 
 }
